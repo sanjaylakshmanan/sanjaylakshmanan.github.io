@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Solder Joint Analysis - Sanjay Lakshmanan</title>
+
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    /* Fix the sidebar width and color */
+    #header {
+      background-color: black;
+      width: 300px;
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      padding-top: 30px;
+    }
+
+    /* Push the main content to the right so it isn't hidden behind the sidebar */
+    .main {
+      margin-left: 300px;
+    }
+
+    /* Ensure text is black and visible */
+    h1, h2, h3, h4, h5, h6, strong {
+      color: #000000 !important;
+      font-weight: 700 !important;
+    }
+
+    /* On mobile, collapse the margin */
+    @media (max-width: 1199px) {
+      .main {
+        margin-left: 0;
+      }
+      #header {
+        left: -300px;
+      }
+    }
+
+    /* --- Force Navigation Text to Always Show --- */
+    @media (min-width: 992px) {
+      .navmenu a,
+      .navmenu a:focus {
+        max-width: 100%;
+      }
+
+      .navmenu a span,
+      .navmenu a:focus span {
+        display: block !important;
+        padding-left: 7px;
+      }
+    }
+
+    /* Anand parameter table styling */
+    .anand-table {
+      font-size: 0.88rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .anand-table th {
+      background-color: #f0f0f0;
+      font-weight: 700 !important;
+    }
+    .anand-table td, .anand-table th {
+      padding: 5px 10px;
+      border: 1px solid #dee2e6;
+      color: #000 !important;
+    }
+  </style>
+</head>
+
+<body class="portfolio-details-page">
+
+  <header id="header" class="header d-flex flex-column justify-content-center">
+    <i class="header-toggle d-xl-none bi bi-list"></i>
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="index.html#hero"><i class="bi bi-house navicon"></i><span>Home</span></a></li>
+        <li><a href="index.html#portfolio" class="active"><i class="bi bi-images navicon"></i><span>Portfolio</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main">
+
+    <div class="page-title">
+      <div class="container">
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li class="current">Thermomechanical Analysis of Solder Joints</li>
+          </ol>
+        </nav>
+        <h1>BGA Solder Joint Creep &amp; Fatigue Life Simulation</h1>
+      </div>
+    </div>
+
+    <section id="portfolio-details" class="portfolio-details section">
+      <div class="container">
+
+        <div class="row gy-4 align-items-center mb-5">
+        </div>
+
+        <div class="row justify-content-between gy-4 mt-4">
+
+          <div class="col-lg-8">
+            <div class="portfolio-description">
+              <h2>Project Overview</h2>
+              <p>
+                This project involved a Finite Element Analysis (FEA) study of the thermo-mechanical reliability of Sn-0.3Ag-0.7Cu-3Bi (SAC0307-3Bi) lead-free solder joints in a Ball Grid Array (BGA) package subjected to thermal cycling between 25 °C and 125 °C. The Bismuth-doped, low-silver SAC alloy is an emerging cost-effective alternative to conventional SAC305 — Bi atoms induce solid solution strengthening in the β-Sn matrix, compensating for the reduced Ag content — but its creep–fatigue behaviour under thermo-mechanical coupling had not been fully characterised. The work addressed this gap through two main steps: (1) calibration of the nine Anand viscoplastic constitutive parameters for SAC0307-3Bi via the Norton creep law and virtual constant-strain-rate tensile simulations, and (2) a 3D quarter-symmetric FE model to simulate stress evolution, creep accumulation, and fatigue life under repeated thermal cycling, with life estimated using the Syed model.
+              </p>
+
+              <h3 class="mt-4">Methodology</h3>
+              <ul>
+                <li><strong>Geometry &amp; Mesh:</strong> A 3D quarter-symmetric finite element model of a standard TOPLINE BGA package was constructed in Abaqus 2022. The assembly comprises five components — silicon die (7 × 7 × 0.28 mm), BT substrate (10 × 10 × 0.42 mm), epoxy mould compound (10 × 10 × 0.47 mm), PCB substrate (15 × 15 × 0.57 mm), and SAC0307-3Bi solder balls (diameter 0.46 mm, standoff height 0.34 mm, pitch 0.60 mm). Symmetry boundary conditions were enforced on the X = 0 plane (U<sub>1</sub> = 0) and Y = 0 plane (U<sub>2</sub> = 0), with a single-point Z-constraint (U<sub>3</sub> = 0) at the PCB centre node to eliminate rigid-body motion while allowing free thermal expansion in all unconstrained directions. C3D8R elements (8-node linear hexahedral, reduced integration) were used throughout, with local mesh refinement applied to the outermost corner solder joints — which carry the highest Distance-to-Neutral-Point (DNP) loading — giving a total of 78,054 elements.</li>
+
+                <div class="col-md-6 mt-2 mb-2">
+                  <img src="assets\img\masonry-portfolio\mesh_BGA.png" alt="BGA Quarter-Symmetric Mesh" class="img-fluid rounded shadow-sm border">
+                  <p class="text-center text-muted mt-2 fst-italic small">Fig 1. Quarter-symmetric mesh of the BGA assembly (78,054 C3D8R elements)</p>
+                </div>
+                <div class="col-md-6 mt-2 mb-2">
+                  <img src="assets\img\masonry-portfolio\disp_end_of_3cycles.png" alt="BGA Cross-Section" class="img-fluid rounded shadow-sm border">
+                  <p class="text-center text-muted mt-2 fst-italic small">Fig 2. Plot showing the displacement at the end of 3 thermal cycles</p>
+                </div>
+                <div class="col-md-6 mt-2 mb-2">
+                  <img src="assets\img\masonry-portfolio\solder_ball_creepstrain.png" alt="BGA Cross-Section" class="img-fluid rounded shadow-sm border">
+                  <p class="text-center text-muted mt-2 fst-italic small">Fig 3. Plot showing the creep strain in the solder balls at the end of 3 thermal cycles</p>
+                </div>
+
+                <li><strong>Anand Viscoplastic Constitutive Model &amp; Parameter Calibration:</strong> Because solder joints operate at a high homologous temperature (T/T<sub>m</sub> &gt; 0.5), their mechanical response is dominated by time-dependent creep. The Anand unified viscoplastic model, which uses a single internal state variable s representing deformation resistance and requires no explicit yield surface, was adopted for the SAC0307-3Bi solder. Its nine parameters were obtained from Liu J, Saad AA, Zheng Y, Ji H, Bachok Z. Anand Model and Finite Element Analysis of Sn-0.3Ag-0.7Cu-3Bi Lead-Free Solder Joints in BGA Packages. Materials. 2026; 19(3):636. https://doi.org/10.3390/ma19030636.
+
+                <table class="table anand-table mt-2">
+                  <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Physical Meaning</th>
+                      <th>Value</th>
+                      <th>Unit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>s₀</td><td>Initial deformation resistance</td><td>26.09</td><td>MPa</td></tr>
+                    <tr><td>Q/R</td><td>Activation energy</td><td>8530</td><td>K</td></tr>
+                    <tr><td>A</td><td>Pre-exponential factor</td><td>224,585</td><td>s⁻¹</td></tr>
+                    <tr><td>ξ</td><td>Stress coefficient</td><td>4.68</td><td>—</td></tr>
+                    <tr><td>m</td><td>Strain rate sensitivity</td><td>0.1832</td><td>—</td></tr>
+                    <tr><td>h₀</td><td>Hardening constant</td><td>8850</td><td>MPa</td></tr>
+                    <tr><td>ŝ</td><td>Saturation deformation resistance coefficient</td><td>35.52</td><td>MPa</td></tr>
+                    <tr><td>n</td><td>Strain rate sensitivity of saturation value</td><td>0.036</td><td>—</td></tr>
+                    <tr><td>a</td><td>Strain rate sensitivity of hardening</td><td>1.33</td><td>—</td></tr>
+                  </tbody>
+                </table>
+                The PCB, BT substrate, silicon die, and mould compound were modelled as isotropic linear elastic materials (material properties: solder E = 50 GPa, ν = 0.3, CTE = 20×10⁻⁶ K⁻¹; silicon E = 131 GPa; PCB E = 22 GPa, CTE = 18×10⁻⁶ K⁻¹). The Visco quasi-static solver in Abaqus was used for the solder creep simulation.</li>
+
+                <li><strong>Thermal Cycling Load Profile:</strong> Three consecutive thermal cycles (25 °C → 125 °C → 25 °C) were applied as a uniform body temperature load. Each ramp was controlled at 0.2 °C/s (500 s per ramp); dwell times at both temperature extremes were set to 1000 s, giving a single cycle period of 3000 s and a total analysis time of 9000 s. Three cycles were simulated to allow the hysteresis loop to reach a stabilised state, consistent with the behaviour of low-melting-point SAC solders.</li>
+
+                <li><strong>Fatigue Life Prediction — Syed Model:</strong> Creep deformation was confirmed as the dominant damage mechanism. The Syed accumulated creep strain model was adopted: N<sub>f</sub> = (C′ · ε<sub>acc</sub>)⁻¹, where C′ = 0.0468 is the inverse creep ductility constant for standard SAC solder, and ε<sub>acc</sub> is the equivalent creep strain accumulated per stabilised cycle. First-cycle data were excluded due to transient stress redistribution from the initial stress-free state; the arithmetic mean of the stable second and third cycle increments was taken, yielding ε<sub>acc</sub> = 0.0040.</li>
+              </ul>
+
+              <h3 class="mt-4">Key Results</h3>
+              <p>
+                The global displacement contours revealed pronounced concave warpage during the high-temperature dwell (125 °C) due to CTE mismatch, while minimal deformation was observed at the low-temperature dwell (25 °C), close to the model's reference temperature. Across the solder array, both von Mises and Tresca equivalent stresses displayed a clear DNP dependence increasing radially from the centre toward the diagonal corners with the <strong>peak von Mises stress of 10.10 MPa</strong> concentrated at the chip-side interface of the outermost corner joint. Shear stress components S13 and S23 confirmed that multiaxial shear driven by CTE mismatch is the dominant loading mode.
+              <div class="col-md-6 mt-2 mb-2">
+                  <img src="assets\img\masonry-portfolio\VM_stress_plot.png" alt="Von-Mises equivalent stress is maximum for the corner solder ball and is located at the chip-side interface" class="img-fluid rounded shadow-sm border">
+                  <p class="text-center text-muted mt-2 fst-italic small">Fig 1. Von-Mises equivalent stress is maximum for the corner solder ball and is located at the chip-side interface</p>
+              </div>
+              
+              </p>
+              <p>
+                Stresses were notably higher during the low-temperature dwell than at high temperature, because at 125 °C intense viscoplastic creep flow relaxes the accumulated thermal mismatch stress, whereas at 25 °C the reduced creep effect restricts stress relaxation, leaving high residual stresses locked in the joints. The equivalent creep strain history of the critical corner element exhibited a characteristic <strong>"step-wise"</strong> accumulation pattern — growing rapidly during the heating and cooling ramps, and plateauing during the isothermal dwells — confirming that the continuously changing temperature difference (and resulting differential thermal expansion) is the primary driver of inelastic deformation. The first cycle accumulated the largest creep increment (ε = 0.0069), with the total reaching 0.015 after three cycles.
+              <div class="col-md-6 mt-2 mb-2">
+                  <img src="assets\img\masonry-portfolio\ceeq_vs_time.png" alt="Equivalent creep strain history" class="img-fluid rounded shadow-sm border">
+                  <p class="text-center text-muted mt-2 fst-italic small">Fig 2. Equivalent creep strain history for the critical corner element.</p>
+              </div>
+              </p>
+              <p>
+                Substituting ε<sub>acc</sub> = 0.00404 into the Syed model yielded a predicted thermal fatigue life of approximately <strong>5281 thermal cycles</strong> for the SAC0307-3Bi corner solder joint under the 25–125 °C profile. These results provide a quantitative reliability benchmark for Bi-doped low-silver SAC interconnects and indicate that minimising both the frequency and duration of exposure to extreme low-temperature environments is an effective strategy to extend device service life.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <div class="portfolio-info">
+              <h3>Project Information</h3>
+              <ul>
+                <li><strong>Category</strong>FEA / Electronic Packaging Reliability</li>
+                <li><strong>Software</strong>Abaqus 2022</li>
+                <li><strong>Solder Alloy</strong>SAC0307-3Bi (Sn-0.3Ag-0.7Cu-3Bi)</li>
+                <li><strong>Constitutive Model</strong>Anand Viscoplasticity (9 parameters)</li>
+                <li><strong>Life Prediction</strong>Syed Accumulated Creep Strain Model</li>
+                <li><strong>Thermal Profile</strong>25 °C to 125 °C, 3 cycles</li>
+                <li><strong>Predicted Life</strong>~2239 thermal cycles</li>
+                <li><strong>Date</strong>March 2026</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer position-relative light-background">
+    <div class="container">
+      <h3 class="sitename">Sanjay Lakshmanan</h3>
+      <p>Finite Element Analysis | Solid Mechanics | Mechanical Design</p>
+      <div class="copyright">
+        <span>Copyright</span> <strong class="px-1 sitename">Sanjay Lakshmanan</strong> <span>All Rights Reserved</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Index - MyResume Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+
+  <style>
+    /* Target the Hero section and set its position to relative 
+    to anchor the pseudo-element overlay. 
+    */
+    /* NEW STYLES for static sidebar */
+    #header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 9999;
+      background-color: black; /* Set the background color to black */
+      padding-top: 30px;
+      width: 300px; /* Adjust the width as needed */
+    }
+
+    /* NEW STYLES: For the profile image at the top of the fixed sidebar */
+    .profile {
+        margin-bottom: 20px;
+    }
+
+    .profile img {
+        margin: 15px auto;
+        display: block;
+        width: 200px; /* Ensures a square width */
+        height: 200px; /* ADDED: Ensures a square height, resulting in a perfect circle */
+        object-fit: cover; /* Ensures the image covers the box without distortion */
+        border: 4px solid #555555;
+    }
+
+    .header-social-links {
+        margin-top: 0; 
+        padding: 0 0 20px 20px; /* ADDED: Padding-left to align links with nav menu */
+        text-align: left; /* CHANGED: Align icons to the left instead of center */
+    }
+
+    .header-social-links a {
+        /* ... existing properties ... */
+        margin-right: 20px; /* Adjust spacing between icons */
+        margin-left: 0px; /* Remove internal margin */
+    }
+
+    .header-social-links a {
+        font-size: 20px;
+        display: inline-block;
+        background: #212121; 
+        color: #ffffff; 
+        line-height: 1;
+        padding: 8px 0;
+        margin: 0 20px; /* MODIFIED: Increased margin space between icons */
+        border-radius: 50%;
+        text-align: center;
+        width: 36px;
+        height: 36px;
+        transition: 0.3s;
+    }
+
+    .header-social-links a:hover {
+        background: #3498db; /* Highlight color on hover */
+        color: #fff;
+    }
+
+    .main {
+      margin-left: 300px; /* Adjust this value to match the width of the sidebar */
+    }
+
+    /* ... existing styles ... */
+
+    /* Force the navigation menu to show full text labels on wide screens */
+    @media (min-width: 992px) {
+        .navmenu a,
+        .navmenu a:focus {
+            max-width: 100%; /* Override the default narrow max-width */
+            width: 100%;
+        }
+
+        .navmenu a span,
+        .navmenu a:focus span {
+            display: block !important; /* Force the text labels to be visible */
+            padding-left: 7px; /* Ensure space between icon and text */
+        }
+        
+        /* Ensure the hover effect doesn't try to override the display */
+        .navmenu a:hover span,
+        .navmenu li:hover > a span {
+            display: block !important;
+        }
+    }
+
+
+    #hero {
+      position: relative;
+    }
+
+    #hero .container {
+      position: relative;
+      z-index: 2; /* Place the text content above the overlay (z-index: 1) */
+      padding-top: 400px; /* ADDED: Push content down */
+    }
+
+    /* Create a semi-transparent overlay using a ::before pseudo-element. 
+    You can adjust the background color and opacity (last number of rgba).
+    0.5 is 50% opacity. 0.0 is fully transparent, 1.0 is fully opaque.
+    */
+    #hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.1); /* Black overlay with 50% opacity
+       z-index: 1; /*Place the overlay above the image but below the text  */
+    }
+
+    /* Ensure the text content is above the overlay.
+    The container holding the text already has a div with class "container".
+    */
+    #hero .container {
+      position: relative;
+      z-index: 2; /* Place the text content above the overlay (z-index: 1) */
+    }
+
+    /* Set the main heading and the title below it to white */
+    #hero h2, 
+    #hero p {
+      color: #ffffff; /* White color */
+    }
+    /* You may also want to set the social links icons to white if they aren't already */
+    #hero .social-links a {
+      color: #ffffff !important; 
+    }
+    
+    /* NEW STYLES for image positioning */
+    #hero img {
+        /* Shifts the image to the right by pushing it 10% from the left edge.
+           Adjust '10%' to increase/decrease the shift. */
+        margin-left: 0%; 
+        width: auto; 
+        height: 100%;
+    }
+
+    /* Optionally: You can target the image directly if needed, but the overlay is usually better.
+    #hero img {
+        opacity: 0.8; 
+    }
+
+    */
+    .education-list .resume-item {
+        /* Reduce vertical space between the degrees */
+        padding: 0 0 1px 1px !important; /* Reduced bottom padding */
+    }
+
+    .education-list .resume-item h4 {
+        text-transform: lowercase;
+        margin-bottom: 1px !important; 
+    }
+    .education-list .resume-item h5 {
+        /* Reduce space below headings */
+        margin-bottom: 1px !important; 
+    }
+    
+    .education-list .resume-item p {
+        /* Reduce space around paragraphs/descriptions */
+        margin-bottom: 1px !important;
+    }
+    
+    .education-list .resume-item ul li {
+        /* Reduce padding inside list items (if any lists were in education) */
+        padding-bottom:  1px !important;
+    }
+    
+    /* You may also want to reduce the space after the Education section title itself */
+    .resume h3.resume-title {
+        margin-bottom: 10px;
+    }
+
+    /* MODIFIED: Black color and bold weight for all headings and strong tags */
+    h1, h2, h3, h4, h5, h6, strong {
+        color: #000000 !important; /* Force color to black */
+        font-weight: 700 !important; /* Force bold weight */
+    }
+
+    /* Target specific resume heading colors if needed to ensure coverage */
+    .resume h4, .resume h3 {
+        color: #000000 !important;
+        font-weight: 700 !important;
+    }
+
+    .project-title {
+        font-size: 18px !important; /* Slightly smaller than h4 (20px) but larger than list items */
+        font-weight: 700 !important; /* Ensure they remain bold */
+        color: #000000 !important; /* Ensure they remain black */
+        margin-top: 5px !important;
+        margin-bottom: 2px !important;
+    }
+
+
+  </style>
+
+</head>
+  <!-- =======================================================
+  * Template Name: MyResume
+  * Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
+  * Updated: Jun 29 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex flex-column justify-content-center">
+
+    <i class="header-toggle d-xl-none bi bi-list"></i>
+
+    <div class="profile text-center">
+      <img src="assets/img/Sanjay_graduation_gown.jpg" alt="Portfolio Image" class="img-fluid rounded-circle custom-sidebar-img">
+    </div>
+
+    <div class="header-social-links text-center pt-2">
+      <a href="MAILTO:sanjay.lax@gmail.com" class="email"><i class="bi bi-envelope"></i></a>
+      <a href="https://www.linkedin.com/in/sanjaynanalakshmanan/" target="_blank" class="linkedin"><i class="bi bi-linkedin"></i></a>
+      <a href="https://scholar.google.com/citations?hl=en&user=0aPwJY4AAAAJ&view_op=list_works&gmla=AKzYXQ2793rOV9BxprJiy5thdp-e9uNWrHR0qbnxPU4fTAdbHfQScGnGRYMBUwmIELdbXVircpGKUFH4il7wtbYH" target="_blank" class="google-scholar" title="Google Scholar"><i class="bi bi-journals"></i></a>
+    </div>
+
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i><span>Home</span></a></li>
+        <li><a href="#about"><i class="bi bi-person navicon"></i><span>About</span></a></li>
+        <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i><span>Resume</span></a></li>
+        <li><a href="#portfolio"><i class="bi bi-images navicon"></i><span>Portfolio</span></a></li>
+      </ul>
+    </nav>
+
+
+
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section light-background">
+
+      <img src="assets/img/Sanjay_dp.jpg" alt="">
+
+      <div class="container" data-aos="zoom-out">
+        <!-- <div class="row justify-content-center"> -->
+        <div class="row">
+          <div class="col-lg-9">
+            <h2>Sanjay Lakshmanan</h2>
+            <!-- <p> <span class="typed" data-typed-items="Finite Element Analysis, Solid Mechanicist, Simulation Engineer, Mechanical Design Engineer"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p> -->
+            <p>Finite Element Analysis | Solid Mechanics</p>
+            <p>Thermal Analysis | Multiphysics | Mechanical Design</p>
+            
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+
+    <section id="about" class="about section">
+
+      <div class="container section-title" data-aos="fade-up">
+        <h2>About</h2>
+      </div><div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4 justify-content-center align-items-center">
+          
+          <div class="col-lg-4 d-flex justify-content-center">
+            <img src="assets/img/my-cartoon.png" class="img-fluid" alt="Sanjay Cartoon" style="max-height: 300px; width: auto;">
+          </div>
+
+          <div class="col-lg-8 content">
+            <p>
+              I graduated with a Ph.D. in Mechanical Engineering from the University of Rochester in 2022 and have 3 years of industry experience as an R&D Engineer as part of the multiphysics group at ANSYS (Canonsburg, USA). I am passionate about mechanical design utilizing my simulation capabilities using finite element analysis and computational fluid dynamics. Currently looking for mechanical design opportunities.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    </section><!-- /About Section -->
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Skills</h2>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row skills-content skills-animation">
+
+          <div class="col-lg-12">
+            <ul class="skills-structured-list">
+
+            <li>
+                <i class="bi bi-caret-right-fill skill-category-icon"></i> <strong>Mechanical Design:</strong> <span> 3D CAD modeling (SolidWorks, Design Modeler, SpaceClaim), GD&T.</span>
+            </li>    
+
+            <li>
+                <i class="bi bi-caret-right-fill skill-category-icon"></i> <strong>Simulation Tools:</strong> <span> ANSYS Mechanical, ABAQUS, ANSYS Icepak, Flotherm, ANSYS Fluent, STAR-CCM+, COMSOL.</span>
+            </li>
+
+            <li>
+                <i class="bi bi-caret-right-fill skill-category-icon"></i> <strong>Structural Analysis (FEA):</strong> <span> Stress Analysis, Contact Mechanics, Nonlinear Material Modeling, Random Vibration.</span>
+            </li> 
+            
+            <li>
+                <i class="bi bi-caret-right-fill skill-category-icon"></i> <strong>Reliability Physics:</strong> <span> Thermal Cycling, Coffin-Manson (Low Cycle Fatigue), Solder Joint Reliability.</span>
+            </li> 
+           
+            <li>
+                <i class="bi bi-caret-right-fill skill-category-icon"></i> <strong>Scripting & Automation:</strong><span> Python (SciPy/Pandas), APDL, C++, FORTRAN (User Subroutines).</span> 
+            </li>
+            <li>
+                <i class="bi bi-caret-right-fill skill-category-icon"></i> <strong>Data-driven Engineering:</strong><span> Design of Experiments (DOE), Surrogate Modeling, Reduced-order modeling, PINNs.</span> 
+            </li>
+            <li>
+                <i class="bi bi-caret-right-fill skill-category-icon"></i> <strong>Communication:</strong><span> Presentations to diverse stakeholders, technical writing and journal publications.</span> 
+            </li>
+
+            <li>
+                <i class="bi bi-caret-right-fill skill-category-icon"></i> <strong>Project Management:</strong><span> Cross-functional collaboration, team leadership/mentorship, multi-tasking.</span> 
+            </li>
+            </ul>
+          </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Skills Section -->
+
+    <!-- Resume Section -->
+    <section id="resume" class="resume section">
+
+      <!-- Section Title -->
+      <!-- <div class="container section-title" data-aos="fade-up">
+        <h2>Resume</h2> -->
+
+      <div class="container section-title" data-aos="fade-up"> 
+        <h2>Resume <a href="assets/files/SANJAY_LAKSHMANAN_Resume.pdf" download="Sanjay_Lakshmanan_Resume.pdf" class="download-icon-h2" title="Download Resume"><i class="bi bi-download"></i></a></h2>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="resume-title">Summary</h3>
+
+            <div class="resume-item pb-0">
+              <h4>Sanjay Lakshmanan</h4>
+              <p><em>Ph.D. Mechanical Engineer with 9 years of combined R&D and academic experience in structural mechanics, thermal and multiphysics analysis. Deep expertise in evaluating consumer electronics component modules, specifically OLED displays, Compute PCBs, and high-density packaging. Proven ability to translate complex boundary value problems such as nonlinear contact mechanics and thermo-mechanical stress into robust design solutions. Adept at cross-functional collaboration and delivering insights for product design.</em></p>
+              <ul>
+              </ul>
+            </div><!-- Edn Resume Item -->
+
+            <h3 class="resume-title">Education</h3>
+            <div class="resume-item">
+              <h4>Ph.D., Mechanical Engineering</h4>
+              <h5>2016 - 2022</h5>
+              <p><em>University of Rochester, Rochester, NY, USA</em></p>
+              <p>Thesis title: Micromechanical Aspects of Contact Printing</p>
+              <p>My thesis contributed in detailing the simulation of adhesion, contact mechanics and stamp mechanics of shape-memory polymer stamps used in contact printing. </p>
+            </div><!-- Edn Resume Item -->
+
+            <div class="resume-item">
+              <h4>M.S., Mechanical Engineering</h4>
+              <h5>2012 - 2014</h5>
+              <p><em>University of Rochester, Rochester, NY, USA</em></p>
+              <!-- <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p> -->
+            </div><!-- Edn Resume Item -->
+
+            <div class="resume-item">
+              <h4>B.E., Mechanical Engineering</h4>
+              <h5>2008 - 2012</h5>
+              <p><em>BMS College of Engineering, Bengaluru, Karnataka, India</em></p>
+              <!-- <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum volu
+                ptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p> -->
+            </div><!-- Edn Resume Item -->
+
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="resume-title">Professional Experience</h3>
+            <div class="resume-item">
+              <h4>R&D Verification Engineer</h4>
+              <h5>Aug 2022 - May 2025</h5>
+              <p><em>Canonsburg, Pennsylvania, USA </em></p>
+              <ul>
+                <!-- <li>Benchmarked kinematic view factor updates in Multiphysics elements for radiation problems against known analytical solutions to ensure thermal convergence. </li> -->
+                <li>Thermal Management: Benchmarked kinematic view factor updates against analytical solutions, resolving convergence instabilities in radiation solvers and enabling high-fidelity thermal prediction for complex systems.</li>
+                <li>Developed FORTRAN user subroutines to validate user programmable features (UPF) for coupled physics phenomena such as stress migration, electromigration and plastic heat generation.</li>
+                <li>Modeled absorbing boundary condition (ABC) using perfectly matched layer (PML) elements for structural, acoustic and piezoelectric wave propagation problems using modal and harmonic analyses.  </li>
+                <li>Validated thermal shell, multiphysics elements (22x) for ANSYS releases 23R1, 23R2, 24R1, 24R2 and 25R1.</li>
+                <!-- <li>Reliability Physics: Validated User Programmable Features (UPF) for stress migration and plastic heat generation, eliminating numerical artifacts in electromigration predictions and improving solver reliability for semiconductor packaging workflows.</li> -->
+              </ul>
+            </div><!-- Edn Resume Item -->
+
+            <div class="resume-item">
+              <h4>Graduate Research Assistant</h4>
+              <h5>Jan 2016 - May 2022</h5>
+              <p><em>Rochester, NY, USA</em></p>
+              <h6 class="project-title">Thermal Analysis of GLAD (Glancing Angle Deposition) Films</h6>
+              <p><em>Collaborators: Marcela Mireles, Brittany N. Hoffman, John C. Lambropoulos, and Stavros G. Demos</em></p>
+              <ul>
+                <li>Analyzed transient thermal response of thin GLAD films (~nm) under pulsed CO<sub>2</sub> laser using ABAQUS. </li>
+                <li>Implemented Gaussian thermal flux and nonlinear temperature dependence of absorption coefficient in fused silica using FORTRAN. </li>
+                <li>Simulated localized melting and thermal transport in nanostructured silica (GLAD) waveplates processed in a high-vacuum chamber ( around 2.5*10-5 Torr).</li>
+                <li>Balanced analytical and computational approaches by first developing a 1D analytical model to understand thermal property effects, followed by a rigorous 2D axisymmetric numerical model in ANSYS.</li>
+                <li>Validated that processing must occur under high vacuum to prevent void fraction trapping. Correlated temperature-dependent material properties (porosity, thermal conductivity) to establish a predictive direct-write protocol for precision optics manufacturing.</li>
+              </ul>
+              
+              <h6 class="project-title">Twyman Effect in Thin Curved Optics</h6>
+              <p><em>Collaborators: John C. Lambropoulos</em></p>
+              <ul>
+                <li>Quantified normal deflections (within 2%) due to grinding induced thin-film stresses in thin curved optics.</li>
+                <li>Performed finite element simulations to predict local thickness effects on Twyman deflections.</li>
+                <li>Quantified grinding-induced deflections in thin components using Finite Element simulations. Correlated non-linear geometrical changes and residual stresses to predict curvature.</li>
+                
+              </ul>
+              
+              <h6 class="project-title">Micromechanical Aspects of Contact Printing</h6>
+              <p><em>Collaborators: John C. Lambropoulos, Mitchell Anthamatten, Alexander Shestopalov</em></p>
+              <ul>
+                <li>Mechanical Design & Validation: Investigated the micromechanics of contact printing for delicate OLED screens and display components. </li>
+                <li>Simulated complex surface-surface adhesion behavior between PCL stamp and glass surface using nonlinear
+                piecewise traction-separation law to within 3% of experimental pull-off force values.</li>
+                <!-- <li>Conducted parameter sweeps across stamp geometry variables to model buckling and roof-collapse
+                thresholds, producing regime maps for system stability prediction.</li> -->
+                <li>FEA & Contact Mechanics: Utilized targeted plane stress models to analyze complex buckling problems and evaluate pattern collapse mechanisms during component transfer.</li>
+                <!-- <li>Manufacturing Impact: Correlated FEA adhesion models with empirical pull-off forces within 3% accuracy, effectively predicting component survivability and providing DFM insights for high-volume display manufacturing.</li> -->
+              </ul>
+            </div><!-- Edn Resume Item -->
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Resume Section -->
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Portfolio</h2>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+          <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+            <li data-filter="*" class="filter-active">All</li>
+            <li data-filter=".filter-research">Research</li>
+            <li data-filter=".filter-design">Design</li>
+            <li data-filter=".filter-AI">AI</li>
+          </ul><!-- End Portfolio Filters -->
+
+          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+              <img src="assets\img\masonry-portfolio\solder_ball_creepstrain.png" class="img-fluid" alt="Thermo-mechanical analysis of solder ball creep strain">
+              <div class="portfolio-info">
+              <h4>Thermo-mechanical Analysis of BGA package</h4>
+              <p>Viscoplastic analysis of solder joints under thermal cycling</p>
+              <a href="assets\img\masonry-portfolio\solder_ball_creepstrain.png" title="Thermo-mechanical Analysis of BGA package" data-gallery="portfolio-gallery-design" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+    
+              <a href="portfolio_details_solder.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+            </div>
+            </div>
+
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product"> -->
+               
+              <!-- <img src="assets/img/portfolio/CD_nozzle_illus.jpg" class="img-fluid" alt="Nozzle CFD Analysis"> -->
+              <!-- <a href="portfolio_details_nozzle.html" class="position-absolute top-0 start-0 w-100 h-100" style="z-index: 1;" title="View Details"></a> -->
+              
+              <!-- <div class="portfolio-info"> -->
+              <!-- <h4>C-D Nozzle Analysis</h4> -->
+              <!-- <p>CFD simulation of supersonic flow & shock diamonds using ANSYS Fluent</p> -->
+    
+              <!-- <a href="assets/img/portfolio/CD_nozzle_illus.jpg" title="Convergent-Divergent Nozzle Analysis" data-gallery="portfolio-gallery-design" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a> -->
+    
+              <!-- <a href="portfolio_details_nozzle.html" title="View Project Details" class="details-link"><i class="bi bi-link-45deg"></i></a> -->
+              <!-- </div> -->
+            <!-- </div> -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-research">
+              <img src="assets/img/masonry-portfolio/GLAD.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Thermal Analysis of GLAD films</h4>
+                <p>Used ABAQUS to analyse the effect of laser power and pulse duration on the </p>
+                <a href="assets/img/masonry-portfolio/GLAD.jpg" title="Research Project 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <!-- <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a> -->
+                <a href="https://opg.optica.org/optica/fulltext.cfm?uri=optica-10-6-657" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-research">
+              <img src="assets/img/masonry-portfolio/Twyman.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Twyman Effect in Thin Curved Optics</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="assets/img/masonry-portfolio/Twyman.jpg" title="Research Project 2" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="https://opg.optica.org/ao/viewmedia.cfm?uri=ao-60-6-1780&seq=0" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+          </div><!-- End Portfolio Container -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Portfolio Section -->
+
+    <!-- Services Section -->
+    <!-- <section id="services" class="services section"> -->
+
+      <!-- Section Title -->
+      <!-- <div class="container section-title" data-aos="fade-up">
+        <h2>Services</h2>
+        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+      </div>End Section Title -->
+
+      <!-- <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item item-cyan position-relative">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174"></path>
+                </svg>
+                <i class="bi bi-activity"></i>
+              </div>
+              <a href="#" class="stretched-link">
+                <h3>Nesciunt Mete</h3>
+              </a>
+              <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
+            </div> -->
+          <!-- </div>End Service Item -->
+
+          <!-- <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item item-orange position-relative">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,582.0697525312426C382.5290701553225,586.8405444964366,449.9789794690241,525.3245884688669,502.5850820975895,461.55621195738473C556.606425686781,396.0723002908107,615.8543463187945,314.28637112970534,586.6730223649479,234.56875336149918C558.9533121215079,158.8439757836574,454.9685369536778,164.00468322053177,381.49747125262974,130.76875717737553C312.15926192815925,99.40240125094834,248.97055460311594,18.661163978235184,179.8680185752513,50.54337015887873C110.5421016452524,82.52863877960104,119.82277516462835,180.83849132639028,109.12597500060166,256.43424936330496C100.08760227029461,320.3096726198365,92.17705696193138,384.0621239912766,124.79988738764834,439.7174275375508C164.83382741302287,508.01625554203684,220.96474134820875,577.5009287672846,300,582.0697525312426"></path>
+                </svg>
+                <i class="bi bi-broadcast"></i>
+              </div>
+              <a href="#" class="stretched-link">
+                <h3>Eosle Commodi</h3>
+              </a>
+              <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
+            </div>
+          </div>End Service Item -->
+
+          <!-- <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item item-teal position-relative">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,541.5067337569781C382.14930387511276,545.0595476570109,479.8736841581634,548.3450877840088,526.4010558755058,480.5488172755941C571.5218469581645,414.80211281144784,517.5187510058486,332.0715597781072,496.52539010469104,255.14436215662573C477.37192572678356,184.95920475031193,473.57363656557914,105.61284051026155,413.0603344069578,65.22779650032875C343.27470386102294,18.654635553484475,251.2091493199835,5.337323636656869,175.0934190732945,40.62881213300186C97.87086631185822,76.43348514350839,51.98124368387456,156.15599469081315,36.44837278890362,239.84606092416172C21.716077023791087,319.22268207091537,43.775223500013084,401.1760424656574,96.891909868211,461.97329694683043C147.22146801428983,519.5804099606455,223.5754009179313,538.201503339737,300,541.5067337569781"></path>
+                </svg>
+                <i class="bi bi-easel"></i>
+              </div>
+              <a href="#" class="stretched-link">
+                <h3>Ledo Markt</h3>
+              </a>
+              <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
+            </div>
+          </div>End Service Item -->
+
+          <!-- <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-item item-red position-relative">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,503.46388370962813C374.79870501325706,506.71871716319447,464.8034551963731,527.1746412648533,510.4981551193396,467.86667711651364C555.9287308511215,408.9015244558933,512.6030010748507,327.5744911775523,490.211057578863,256.5855673507754C471.097692560561,195.9906835881958,447.69079081568157,138.11976852964426,395.19560036434837,102.3242989838813C329.3053358748298,57.3949838291264,248.02791733380457,8.279543830951368,175.87071277845988,42.242879143198664C103.41431057327972,76.34704239035025,93.79494320519305,170.9812938413882,81.28167332365135,250.07896920659033C70.17666984294237,320.27484674793965,64.84698225790005,396.69656628748305,111.28512138212992,450.4950937839243C156.20124167950087,502.5303643271138,231.32542653798444,500.4755392045468,300,503.46388370962813"></path>
+                </svg>
+                <i class="bi bi-bounding-box-circles"></i>
+              </div>
+              <a href="#" class="stretched-link">
+                <h3>Asperiores Commodit</h3>
+              </a>
+              <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
+              <a href="#" class="stretched-link"></a>
+            </div>
+          </div>End Service Item -->
+
+          <!-- <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="service-item item-indigo position-relative">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,532.3542879108572C369.38199826031484,532.3153073249985,429.10787420159085,491.63046689027357,474.5244479745417,439.17860296908856C522.8885846962883,383.3225815378663,569.1668002868075,314.3205725914397,550.7432151929288,242.7694973846089C532.6665558377875,172.5657663291529,456.2379748765914,142.6223662098291,390.3689995646985,112.34683881706744C326.66090330228417,83.06452184765237,258.84405631176094,53.51806209861945,193.32584062364296,78.48882559362697C121.61183558270385,105.82097193414197,62.805066853699245,167.19869350419734,48.57481801355237,242.6138429142374C34.843463184063346,315.3850353017275,76.69343916112496,383.4422959591041,125.22947124332185,439.3748458443577C170.7312796277747,491.8107796887764,230.57421082200815,532.3932930995766,300,532.3542879108572"></path>
+                </svg>
+                <i class="bi bi-calendar4-week icon"></i>
+              </div>
+              <a href="#" class="stretched-link">
+                <h3>Velit Doloremque</h3>
+              </a>
+              <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
+              <a href="#" class="stretched-link"></a>
+            </div>
+          </div>End Service Item -->
+
+          <!-- <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="service-item item-pink position-relative">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,566.797414625762C385.7384707136149,576.1784315230908,478.7894351017131,552.8928747891023,531.9192734346935,484.94944893311C584.6109503024035,417.5663521118492,582.489472248146,322.67544863468447,553.9536738515405,242.03673114598146C529.1557734026468,171.96086150256528,465.24506316201064,127.66468636344209,395.9583748389544,100.7403814666027C334.2173773831606,76.7482773500951,269.4350130405921,84.62216499799875,207.1952322260088,107.2889140133804C132.92018162631612,134.33871894543012,41.79353780512637,160.00259165414826,22.644507872594943,236.69541883565114C3.319112789854554,314.0945973066697,72.72355303640163,379.243833228382,124.04198916343866,440.3218312028393C172.9286146004772,498.5055451809895,224.45579914871206,558.5317968840102,300,566.797414625762"></path>
+                </svg>
+                <i class="bi bi-chat-square-text"></i>
+              </div>
+              <a href="#" class="stretched-link">
+                <h3>Dolori Architecto</h3>
+              </a>
+              <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
+              <a href="#" class="stretched-link"></a>
+            </div>
+          </div>End Service Item -->
+
+        <!-- </div>
+
+      </div>
+
+    </section>/Services Section -->
+
+    <!-- Testimonials Section -->
+    <!-- <section id="testimonials" class="testimonials section">
+ -->
+      <!-- Section Title -->
+      <!-- <div class="container section-title" data-aos="fade-up">
+        <h2>Testimonials</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div> --><!-- End Section Title -->
+
+      <!-- <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              }
+            }
+          </script>
+          <div class="swiper-wrapper"> -->
+
+            <!-- <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="row gy-4 justify-content-center">
+                  <div class="col-lg-6">
+                    <div class="testimonial-content">
+                      <p>
+                        <i class="bi bi-quote quote-icon-left"></i>
+                        <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.</span>
+                        <i class="bi bi-quote quote-icon-right"></i>
+                      </p>
+                      <h3>Saul Goodman</h3>
+                      <h4>Ceo &amp; Founder</h4>
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-2 text-center">
+                    <img src="assets/img/testimonials/testimonials-1.jpg" class="img-fluid testimonial-img" alt="">
+                  </div>
+                </div>
+              </div>
+            </div> --><!-- End testimonial item -->
+
+           <!--  <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="row gy-4 justify-content-center">
+                  <div class="col-lg-6">
+                    <div class="testimonial-content">
+                      <p>
+                        <i class="bi bi-quote quote-icon-left"></i>
+                        <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</span>
+                        <i class="bi bi-quote quote-icon-right"></i>
+                      </p>
+                      <h3>Sara Wilsson</h3>
+                      <h4>Designer</h4>
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-2 text-center">
+                    <img src="assets/img/testimonials/testimonials-2.jpg" class="img-fluid testimonial-img" alt="">
+                  </div>
+                </div>
+              </div>
+            </div> --><!-- End testimonial item -->
+
+            <!-- <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="row gy-4 justify-content-center">
+                  <div class="col-lg-6">
+                    <div class="testimonial-content">
+                      <p>
+                        <i class="bi bi-quote quote-icon-left"></i>
+                        <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.</span>
+                        <i class="bi bi-quote quote-icon-right"></i>
+                      </p>
+                      <h3>Jena Karlis</h3>
+                      <h4>Store Owner</h4>
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-2 text-center">
+                    <img src="assets/img/testimonials/testimonials-3.jpg" class="img-fluid testimonial-img" alt="">
+                  </div>
+                </div>
+              </div>
+            </div> --><!-- End testimonial item -->
+
+           <!--  <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="row gy-4 justify-content-center">
+                  <div class="col-lg-6">
+                    <div class="testimonial-content">
+                      <p>
+                        <i class="bi bi-quote quote-icon-left"></i>
+                        <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.</span>
+                        <i class="bi bi-quote quote-icon-right"></i>
+                      </p>
+                      <h3>John Larson</h3>
+                      <h4>Entrepreneur</h4>
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-2 text-center">
+                    <img src="assets/img/testimonials/testimonials-4.jpg" class="img-fluid testimonial-img" alt="">
+                  </div>
+                </div>
+              </div>
+            </div> --><!-- End testimonial item -->
+
+         <!--  </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+
+    </section> --><!-- /Testimonials Section -->
+
+    <!-- Contact Section
+    <section id="contact" class="contact section"> -->
+
+      <!-- Section Title -->
+      <!-- <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div>End Section Title -->
+
+      <!-- <div class="container" data-aos="fade" data-aos-delay="100">
+
+        <div class="row gy-4"> -->
+
+          <!-- <div class="col-lg-4">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <div>
+                <h3>Address</h3>
+                <p>A108 Adam Street, New York, NY 535022</p>
+              </div>
+            </div>End Info Item -->
+
+            <!-- <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <div>
+                <h3>Call Us</h3>
+                <p>+1 5589 55488 55</p>
+              </div> -->
+            <!-- </div>End Info Item -->
+
+            <!-- <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-envelope flex-shrink-0"></i>
+              <div>
+                <h3>Email Us</h3>
+                <p>info@example.com</p>
+              </div> -->
+            <!-- </div>End Info Item -->
+
+          <!-- </div> -->
+
+          <!-- <div class="col-lg-8">
+            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+              <div class="row gy-4">
+
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                </div>
+
+                <div class="col-md-6 ">
+                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                  <button type="submit">Send Message</button>
+                </div>
+
+              </div>
+            </form> -->
+          <!-- </div>End Contact Form -->
+
+        <!-- </div>
+
+      </div> -->
+
+    </section><!-- /Contact Section -->
+
+  </main>
+
+  <footer id="footer" class="footer position-relative light-background">
+    <div class="container">
+      <h3 class="sitename">Sanjay Lakshmanan</h3>
+      <!-- <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p> -->
+      <!-- <div class="social-links d-flex justify-content-center"> -->
+        <!-- <a href=""><i class="bi bi-twitter-x"></i></a> -->
+        <!-- <a href=""><i class="bi bi-facebook"></i></a> -->
+        <!-- <a href=""><i class="bi bi-instagram"></i></a> -->
+        <!-- <a href=""><i class="bi bi-skype"></i></a> -->
+        <!-- <a href=""><i class="bi bi-linkedin"></i></a> -->
+      <!-- </div> -->
+      <div class="container">
+        <!-- <div class="copyright"> -->
+          <!-- <span>Copyright</span> <strong class="px-1 sitename">Alex Smith</strong> <span>All Rights Reserved</span> -->
+        <!-- </div> -->
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you've purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
