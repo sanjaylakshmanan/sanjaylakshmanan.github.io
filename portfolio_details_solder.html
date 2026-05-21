@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><script type='text/javascript' nonce='KmkdcAKQqPSGOmvWWLOfqA==' src='https://contribution.usercontent.google.com/qqrUGO8CDvBI1xVfweMLQEXoXBx6a9GKv3FWFZNi8go4OhRrcg0cUmkhStNrjqhCHqLBXk2PtpNZR8ElFiI-MrLZK7gQsFxkAav1MnQ0KAlW8YR_hUdxmnC8-G-qy4nPoJPllBx73z8PiVxArFCv0mIhlwO98jYqMq6cELIRzd38MbbCIBoKpLwIXo7Us3nfvT_F1VxvZnYvePFmajmosA7u6grN8c9vgmBrPxyYaLxsOyxk3XNoIhP9TteQQhjsO9zglL74DpUZaPX8_BZC4RAjPkPhINol2YEKtH-WOXDCE1F5s_Y34CD3vHHyE7SGpQ-kKttqBQ8NqM85dcgZW3DlPI_Nk87zDgRD8wN-4aBv9smJwaHSkSd1zhiAcdIP1gMnS759BqBu0ganLe8T66rWqHMWBhbKibYQFx1WBoqkEcklqukEvDRF5UwcaMEOrNvHFL-wOjn7fFXJgYz7heAQYXXY65LxiC-wkCJMH6c34SwCrHi1-0AWI6UOEwJ5YL57w7zwp3jOnCCRJiE-W92RGGOFPBI4JlORGAg_a0ojZfYoYFC1sP1NuHVh8TMgtIbC5yNp-aRSO5Q0KoPSiY9WHzgIfd0QLV4PPdtIkJkXUHbxTExSwIpxdm5zo1m6u1mp5Yb_t7ctsmnEY1NKFL18RyC0DBcd2kgo80d-wWBnjEs0pPIERrFEfNCcbUen-Lrrqhy7aJ1olygJY9v4fj5CPlu7QjaIZP-gUsg'></script>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Solder Joint Analysis - Sanjay Lakshmanan</title>
@@ -14,36 +14,57 @@
   <link href="assets/css/main.css" rel="stylesheet">
 
   <style>
-    /* Fix the sidebar width and color */
-    #header {
-      background-color: black;
-      width: 300px;
-      position: fixed;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      padding-top: 30px;
+    /* DESKTOP SIDEBAR: Hidden by default, slides out on left-edge hover */
+    @media (min-width: 1200px) {
+      #header {
+        position: fixed;
+        top: 0;
+        left: -300px;
+        bottom: 0;
+        z-index: 9999;
+        background-color: black;
+        padding-top: 30px;
+        width: 300px;
+        transition: left 0.3s ease-in-out;
+      }
+
+      /* Invisible hover trigger zone hanging onto the visible left edge of the screen */
+      #header::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -40px;
+        width: 40px;
+        height: 100%;
+        background: transparent;
+      }
+
+      /* Slide out the sidebar when the user hovers over the hitbox or the open menu */
+      #header:hover {
+        left: 0;
+      }
+
+      /* Make main content occupy the full width of the viewport */
+      .main {
+        margin-left: 0 !important;
+      }
     }
 
-    /* Push the main content to the right so it isn't hidden behind the sidebar */
-    .main {
-      margin-left: 300px;
+    /* MOBILE/TABLET SIDEBAR: Fallback defaults for screens under 1200px */
+    @media (max-width: 1199px) {
+      #header {
+        background-color: black;
+        padding-top: 30px;
+      }
+      .main {
+        margin-left: 0 !important;
+      }
     }
 
     /* Ensure text is black and visible */
     h1, h2, h3, h4, h5, h6, strong {
       color: #000000 !important;
       font-weight: 700 !important;
-    }
-
-    /* On mobile, collapse the margin */
-    @media (max-width: 1199px) {
-      .main {
-        margin-left: 0;
-      }
-      #header {
-        left: -300px;
-      }
     }
 
     /* --- Force Navigation Text to Always Show --- */
@@ -124,19 +145,19 @@
                 <li><strong>Geometry &amp; Mesh:</strong> A 3D quarter-symmetric finite element model of a standard TOPLINE BGA package was constructed in Abaqus 2022. The assembly comprises five components — silicon die (7 × 7 × 0.28 mm), BT substrate (10 × 10 × 0.42 mm), epoxy mould compound (10 × 10 × 0.47 mm), PCB substrate (15 × 15 × 0.57 mm), and SAC0307-3Bi solder balls (diameter 0.46 mm, standoff height 0.34 mm, pitch 0.60 mm). Symmetry boundary conditions were enforced on the X = 0 plane (U<sub>1</sub> = 0) and Y = 0 plane (U<sub>2</sub> = 0), with a single-point Z-constraint (U<sub>3</sub> = 0) at the PCB centre node to eliminate rigid-body motion while allowing free thermal expansion in all unconstrained directions. C3D8R elements (8-node linear hexahedral, reduced integration) were used throughout, with local mesh refinement applied to the outermost corner solder joints — which carry the highest Distance-to-Neutral-Point (DNP) loading — giving a total of 78,054 elements.</li>
 
                 <div class="col-md-6 mt-2 mb-2">
-                  <img src="assets\img\masonry-portfolio\mesh_BGA.png" alt="BGA Quarter-Symmetric Mesh" class="img-fluid rounded shadow-sm border">
+                  <img src="assets/img/masonry-portfolio/mesh_BGA.png" alt="BGA Quarter-Symmetric Mesh" class="img-fluid rounded shadow-sm border">
                   <p class="text-center text-muted mt-2 fst-italic small">Fig 1. Quarter-symmetric mesh of the BGA assembly (78,054 C3D8R elements)</p>
                 </div>
                 <div class="col-md-6 mt-2 mb-2">
-                  <img src="assets\img\masonry-portfolio\disp_end_of_3cycles.png" alt="BGA Cross-Section" class="img-fluid rounded shadow-sm border">
+                  <img src="assets/img/masonry-portfolio/disp_end_of_3cycles.png" alt="BGA Cross-Section" class="img-fluid rounded shadow-sm border">
                   <p class="text-center text-muted mt-2 fst-italic small">Fig 2. Plot showing the displacement at the end of 3 thermal cycles</p>
                 </div>
                 <div class="col-md-6 mt-2 mb-2">
-                  <img src="assets\img\masonry-portfolio\solder_ball_creepstrain.png" alt="BGA Cross-Section" class="img-fluid rounded shadow-sm border">
+                  <img src="assets/img/masonry-portfolio/solder_ball_creepstrain.png" alt="BGA Cross-Section" class="img-fluid rounded shadow-sm border">
                   <p class="text-center text-muted mt-2 fst-italic small">Fig 3. Plot showing the creep strain in the solder balls at the end of 3 thermal cycles</p>
                 </div>
 
-                <li><strong>Anand Viscoplastic Constitutive Model &amp; Parameter Calibration:</strong> Because solder joints operate at a high homologous temperature (T/T<sub>m</sub> &gt; 0.5), their mechanical response is dominated by time-dependent creep. The Anand unified viscoplastic model, which uses a single internal state variable s representing deformation resistance and requires no explicit yield surface, was adopted for the SAC0307-3Bi solder. Its nine parameters were obtained from Liu J, Saad AA, Zheng Y, Ji H, Bachok Z. Anand Model and Finite Element Analysis of Sn-0.3Ag-0.7Cu-3Bi Lead-Free Solder Joints in BGA Packages. Materials. 2026; 19(3):636. https://doi.org/10.3390/ma19030636.
+                <li><strong>Anand Viscoplastic Constitutive Model &amp; Parameter Calibration:</strong> Because solder joints operate at a high homologous temperature (T/T<sub>m</sub> &gt; 0.5), their mechanical response is dominated by time-dependent creep. The Anand unified viscoplastic model, which uses a single internal state variable s representing deformation resistance and requires no explicit yield surface, was adopted for the SAC0307-3Bi solder. Its nine parameters were obtained from Liu J, Saad AA, Zheng Y, Ji H, Bachok Z. Anand Model and Finite Element Analysis of Sn-0.3Ag-0.7Cu-3Bi Lead-Free Solder Joints in BGA Packages. Materials. 2026; 19(3):636.
 
                 <table class="table anand-table mt-2">
                   <thead>
@@ -170,7 +191,7 @@
               <p>
                 The global displacement contours revealed pronounced concave warpage during the high-temperature dwell (125 °C) due to CTE mismatch, while minimal deformation was observed at the low-temperature dwell (25 °C), close to the model's reference temperature. Across the solder array, both von Mises and Tresca equivalent stresses displayed a clear DNP dependence increasing radially from the centre toward the diagonal corners with the <strong>peak von Mises stress of 10.10 MPa</strong> concentrated at the chip-side interface of the outermost corner joint. Shear stress components S13 and S23 confirmed that multiaxial shear driven by CTE mismatch is the dominant loading mode.
               <div class="col-md-6 mt-2 mb-2">
-                  <img src="assets\img\masonry-portfolio\VM_stress_plot.png" alt="Von-Mises equivalent stress is maximum for the corner solder ball and is located at the chip-side interface" class="img-fluid rounded shadow-sm border">
+                  <img src="assets/img/masonry-portfolio/VM_stress_plot.png" alt="Von-Mises equivalent stress plot" class="img-fluid rounded shadow-sm border">
                   <p class="text-center text-muted mt-2 fst-italic small">Fig 1. Von-Mises equivalent stress is maximum for the corner solder ball and is located at the chip-side interface</p>
               </div>
               
@@ -178,7 +199,7 @@
               <p>
                 Stresses were notably higher during the low-temperature dwell than at high temperature, because at 125 °C intense viscoplastic creep flow relaxes the accumulated thermal mismatch stress, whereas at 25 °C the reduced creep effect restricts stress relaxation, leaving high residual stresses locked in the joints. The equivalent creep strain history of the critical corner element exhibited a characteristic <strong>"step-wise"</strong> accumulation pattern — growing rapidly during the heating and cooling ramps, and plateauing during the isothermal dwells — confirming that the continuously changing temperature difference (and resulting differential thermal expansion) is the primary driver of inelastic deformation. The first cycle accumulated the largest creep increment (ε = 0.0069), with the total reaching 0.015 after three cycles.
               <div class="col-md-6 mt-2 mb-2">
-                  <img src="assets\img\masonry-portfolio\ceeq_vs_time.png" alt="Equivalent creep strain history" class="img-fluid rounded shadow-sm border">
+                  <img src="assets/img/masonry-portfolio/ceeq_vs_time.png" alt="Equivalent creep strain history" class="img-fluid rounded shadow-sm border">
                   <p class="text-center text-muted mt-2 fst-italic small">Fig 2. Equivalent creep strain history for the critical corner element.</p>
               </div>
               </p>
